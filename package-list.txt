@@ -1,0 +1,12 @@
+btop
+git
+gzip
+htop
+neofetch
+nfs-utils
+pigz
+pixz
+tar
+tree
+wget
+wireguard-tools
