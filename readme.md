@@ -159,3 +159,11 @@ git config --global core.eol lf
 git config --global core.autocrlf input
 sudo git config --system receive.fsckObjects true
 ```
+
+### WireGuard (client)
+
+```sh
+wg genkey | sudo tee /etc/wireguard/wg-private.key | wg pubkey | sudo tee /etc/wireguard/wg-public.key
+sudo systemctl start wg-quick@wg.service
+sudo systemctl enable wg-quick@wg.service
+```
