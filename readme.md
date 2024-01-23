@@ -112,12 +112,13 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## Install packages and enable services
 
 ```sh
-pacman -Syy networkmanager syslog-ng cronie ntp openssh
+pacman -Syy systemd-{networkd,resolved} syslog-ng cronie ntp openssh
 
 vim /etc/systemd/journald.conf # #ForwardToSyslog=no -> ForwardToSyslog=yes
 vim /etc/ssh/sshd_config # AllowUsers user
 
-systemctl enable NetworkManager
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
 systemctl enable syslog-ng@default
 systemctl enable cronie
 systemctl enable ntpd
@@ -164,7 +165,7 @@ sudo git config --system receive.fsckObjects true
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg-private.key | wg pubkey | sudo tee /etc/wireguard/wg-public.key
-
+sudo vim /etc/wireguard/wg.conf
 sudo systemctl start wg-quick@wg.service
 sudo systemctl enable wg-quick@wg.service
 ```
