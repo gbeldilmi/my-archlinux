@@ -127,6 +127,10 @@ systemctl enable sshd
 
 Install all packages from the [package list](package-list.txt) with `pacman -S [packages]`.
 
+## Network bonding
+
+[cf. `/etc/systemd/network/`](etc/systemd/network/)
+
 ## Create user's profile
 
 ```sh
@@ -162,6 +166,8 @@ sudo git config --system receive.fsckObjects true
 ```
 
 ### WireGuard (client)
+
+[cf. `/etc/wireguard/wg.conf`](etc/wireguard/wg.conf)
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg-private.key | wg pubkey | sudo tee /etc/wireguard/wg-public.key
