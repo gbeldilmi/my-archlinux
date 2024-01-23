@@ -164,6 +164,7 @@ sudo git config --system receive.fsckObjects true
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg-private.key | wg pubkey | sudo tee /etc/wireguard/wg-public.key
+
 sudo systemctl start wg-quick@wg.service
 sudo systemctl enable wg-quick@wg.service
 ```
