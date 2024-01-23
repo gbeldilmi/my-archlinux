@@ -167,11 +167,11 @@ sudo git config --system receive.fsckObjects true
 
 ### WireGuard (client)
 
-[cf. `/etc/wireguard/wg.conf`](etc/wireguard/wg.conf)
+[cf. `/etc/wireguard/wg0.conf`](etc/wireguard/wg0.conf)
 
 ```sh
-wg genkey | sudo tee /etc/wireguard/wg-private.key | wg pubkey | sudo tee /etc/wireguard/wg-public.key
-sudo vim /etc/wireguard/wg.conf
-sudo systemctl start wg-quick@wg.service
-sudo systemctl enable wg-quick@wg.service
+wg genkey | sudo tee /etc/wireguard/wg0-private.key | wg pubkey | sudo tee /etc/wireguard/wg0-public.key
+sudo vim /etc/wireguard/wg0.conf
+sudo systemctl start wg-quick@wg0.service
+sudo systemctl enable wg-quick@wg0.service
 ```
