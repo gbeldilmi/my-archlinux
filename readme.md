@@ -112,7 +112,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## Install packages and enable services
 
 ```sh
-pacman -Syy systemd-{networkd,resolved} syslog-ng cronie ntp openssh
+pacman -Syy syslog-ng cronie ntp openssh
 
 vim /etc/systemd/journald.conf # #ForwardToSyslog=no -> ForwardToSyslog=yes
 vim /etc/ssh/sshd_config # AllowUsers user
