@@ -2,4 +2,5 @@
 Name=bond0
 
 [Network]
+BindCarrier=enp3s0f0 enp3s0f1
 DHCP=yes
