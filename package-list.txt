@@ -1,6 +1,7 @@
 btop
 git
 gzip
+hashdeep
 htop
 neofetch
 nfs-utils
