@@ -1,5 +1,5 @@
 [Match]
-Name=enp3s0f*
+Name=enp*
 
 [Network]
 Bond=bond0
