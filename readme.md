@@ -175,3 +175,17 @@ sudo vim /etc/wireguard/wg0.conf
 sudo systemctl start wg-quick@wg0.service
 sudo systemctl enable wg-quick@wg0.service
 ```
+
+### NFS
+
+```sh
+ln -sf /shared /srv/shared
+
+vim /etc/exports # /srv/shared  10.0.0.0/8(rw,sync,anonuid=65534,anongid=65534,no_subtree_check)
+
+vim /etc/hosts.allow # ALL: 10.*.*.*
+vim /etc/hosts.deny # ALL: ALL
+
+systemctl enable nfs-server.service
+exportfs -arv
+```
