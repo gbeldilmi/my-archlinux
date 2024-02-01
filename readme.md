@@ -127,6 +127,12 @@ systemctl enable sshd
 
 Install all packages from the [package list](package-list.txt) with `pacman -S [packages]`.
 
+Show system information when logging in.
+
+```sh
+echo "neofetch" >> /etc/profile
+```
+
 ## Network bonding
 
 [cf. `/etc/systemd/network/`](etc/systemd/network/)
