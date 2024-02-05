@@ -1,0 +1,11 @@
+base-devel
+desmume
+discord
+firefox-developer-edition
+jdk-openjdk
+libreoffice-fresh
+lua
+nmap
+python
+ruby
+rust

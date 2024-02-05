@@ -45,12 +45,12 @@ mount /dev/sda1 /mnt/boot
 
 ### UEFI
 
-Code | Partition            | Mount point | Size               | Description
----- | -------------------- | ----------- | ------------------ | ----------------
-ef00 | /dev/sda1            | /boot/efi   | 512Mo              | EFI System
-8300 | /dev/sda2            | /           | Remaining space    | Linux filesystem
-8200 | /dev/sda3            |             | RAM size (max 8Go) | Linux swap
-8300 | /dev/sdb1 (optional) | /home       | The whole device   | Linux filesystem
+Code | Partition            | Mount point | Size                                    | Description
+---- | -------------------- | ----------- | --------------------------------------- | ----------------
+ef00 | /dev/sda1            | /boot/efi   | 512Mo                                   | EFI System
+8300 | /dev/sda2            | /           | Remaining space                         | Linux filesystem
+8200 | /dev/sda3            |             | RAM size (max 8Go, 16Go if RAM > 128Go) | Linux swap
+8300 | /dev/sdb1 (optional) | /home       | The whole device                        | Linux filesystem
 
 ```sh
 fdisk -l # Results ending in rom, loop or airoot may be ignored
@@ -125,7 +125,7 @@ systemctl enable ntpd
 systemctl enable sshd
 ```
 
-Install all packages from the [package list](package-list.txt) with `pacman -S [packages]`.
+Install all packages from the [package list](common/package-list.txt) with `pacman -S [packages]`.
 
 Show system information when logging in.
 
@@ -144,7 +144,7 @@ Later, on post-installation, connect to a wifi network with `iwctl`.
 
 ## Network bonding
 
-[cf. `/etc/systemd/network/`](etc/systemd/network/)
+[cf. `/etc/systemd/network/`](common/etc/systemd/network/)
 
 ## Create user's profile
 
@@ -182,7 +182,7 @@ sudo git config --system receive.fsckObjects true
 
 ### WireGuard (client)
 
-[cf. `/etc/wireguard/wg0.conf`](etc/wireguard/wg0.conf)
+[cf. `/etc/wireguard/wg0.conf`](common/etc/wireguard/wg0.conf)
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg0-private.key | wg pubkey | sudo tee /etc/wireguard/wg0-public.key
@@ -196,7 +196,7 @@ sudo systemctl enable wg-quick@wg0.service
 ```sh
 ln -sf /shared /srv/shared
 
-vim /etc/exports # /srv/shared  10.0.0.0/8(rw,sync,anonuid=65534,anongid=65534,no_subtree_check)
+vim /etc/exports # /srv/shared  10.0.0.0/8(rw,sync,anonuid=65534,anongid=65534,no_subtree_check,crossmnt)
 
 vim /etc/hosts.allow # ALL: 10.*.*.*
 vim /etc/hosts.deny # ALL: ALL
