@@ -133,6 +133,15 @@ Show system information when logging in.
 echo "neofetch" >> /etc/profile
 ```
 
+## Wireless network
+
+```sh
+pacman -S iwd
+systemctl enable iwd
+```
+
+Later, on post-installation, connect to a wifi network with `iwctl`.
+
 ## Network bonding
 
 [cf. `/etc/systemd/network/`](etc/systemd/network/)
