@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 function _run() {
-  #wg-quick down wg0
-  ip route add 10.42.0.0/16 via aquarius
+  mount.nfs aquarius:/srv/shared /shared
 }
 
 if [ "$EUID" -ne 0 ]
@@ -13,3 +12,5 @@ else
   _run
   exit 0
 fi
+
+unset -f _run

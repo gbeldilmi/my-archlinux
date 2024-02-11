@@ -10,3 +10,4 @@ function _run() {
 
 nohup _run &!
 
+unset -f _run
