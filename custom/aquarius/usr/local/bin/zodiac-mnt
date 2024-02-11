@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 function _run() {
-  mount.nfs gemini:/srv/zodiac /srv/shared/zodiac
+  mount.nfs gemini:/srv/zodiac /srv/zodiac
+  exportfs -arv
 }
 
 if [ "$EUID" -ne 0 ]

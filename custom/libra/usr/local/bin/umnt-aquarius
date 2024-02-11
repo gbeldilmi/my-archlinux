@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 function _run() {
-  mount.nfs aquarius:/srv/shared /shared
+  umount /shared
+  umount /zodiac
 }
 
 if [ "$EUID" -ne 0 ]
