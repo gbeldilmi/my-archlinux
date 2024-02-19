@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 function _run() {
-  mount.nfs gemini:/srv/zodiac /zodiac
+  cryptsetup luksOpen /dev/sdc1 zodiac
+  mount /dev/mapper/zodiac /zodiac
+  exportfs -arv
 }
 
 if [ "$EUID" -ne 0 ]
@@ -12,5 +14,3 @@ else
   _run
   exit 0
 fi
-
-unset -f _run

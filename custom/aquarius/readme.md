@@ -1,4 +1,4 @@
-# gemini
+# aquarius
 
 ## Partitions
 

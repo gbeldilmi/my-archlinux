@@ -12,3 +12,5 @@ else
   _run
   exit 0
 fi
+
+unset -f _run

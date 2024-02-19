@@ -3,7 +3,7 @@
 ## Partitions
 
 Partition                         | Mount point   | Size               | Filesystem
---------------------------------- | ------------- | ------------------ | -----------
+--------------------------------- | ------------- | ------------------ | ----------------
 **SAS 0 : System**                |               | **1To**            |
 /dev/sda1                         | /boot/efi     | 512Mo              | EFI System
 /dev/sda2                         | /             | Remaining space    | ext4
@@ -11,7 +11,17 @@ Partition                         | Mount point   | Size               | Filesys
 **SAS 1 : Backup**                |               | **4To**            |
 /dev/sdb1                         | /save         | The whole device   | ext4
 **SAS 2-7 : Data *(Raid 5/6)***   |               |                    |
-/dev/sdc1                         | /zodiac       | The whole device   | ext4
+/dev/sdc1 */dev/mapper/zodiac*    | /zodiac       | The whole device   | ext4 (Encrypted)
+
+## Encrypted partition
+
+```sh
+sudo cryptsetup luksFormat /dev/sdc1
+sudo cryptsetup luksOpen /dev/sdc1 zodiac
+sudo mkfs.ext4 /dev/mapper/zodiac
+sudo mount /dev/mapper/zodiac /zodiac
+```
+
 
 ## Directories and symlinks
 
