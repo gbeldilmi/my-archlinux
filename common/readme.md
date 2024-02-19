@@ -144,7 +144,7 @@ Later, on post-installation, connect to a wifi network with `iwctl`.
 
 ## Network bonding
 
-[cf. `/etc/systemd/network/`](common/etc/systemd/network/)
+- [cf. `/etc/systemd/network/`](common/etc/systemd/network/)
 
 ## Create user's profile
 
@@ -182,7 +182,8 @@ sudo git config --system receive.fsckObjects true
 
 ### WireGuard (client)
 
-[cf. `/etc/wireguard/wg0.conf`](common/etc/wireguard/wg0.conf)
+- [cf. `/etc/wireguard/wg0.conf` (server)](common/etc/wireguard/wg0-s.conf)
+- [cf. `/etc/wireguard/wg0.conf` (client)](common/etc/wireguard/wg0-c.conf)
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg0-private.key | wg pubkey | sudo tee /etc/wireguard/wg0-public.key
@@ -196,9 +197,9 @@ sudo systemctl enable wg-quick@wg0.service
 ```sh
 ln -sf /shared /srv/shared
 
-vim /etc/exports # /srv/shared  10.0.0.0/8(rw,sync,anonuid=65534,anongid=65534,no_subtree_check,crossmnt,nohide) # fsid=0
+vim /etc/exports # /srv/shared  10.128.0.2(rw,sync,anonuid=65534,anongid=65534,no_subtree_check,crossmnt,nohide)
 
-vim /etc/hosts.allow # ALL: 10.*.*.*
+vim /etc/hosts.allow # ALL: 10.128.0.*
 vim /etc/hosts.deny # ALL: ALL
 
 systemctl enable nfs-server.service

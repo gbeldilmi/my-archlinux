@@ -9,9 +9,3 @@ Partition      | Mount point   | Size               | Filesystem
 /dev/sda3      |               | 8Go                | swap
 /dev/sdb1      | /home         | The whole device   | ext4
 /dev/sdc1      | /srv          | The whole device   | ext4
-
-## Directories and symlinks
-
-```sh
-mkdir -p /srv/shared/zodiac
-```
