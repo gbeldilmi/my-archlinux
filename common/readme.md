@@ -125,7 +125,7 @@ systemctl enable ntpd
 systemctl enable sshd
 ```
 
-Install all packages from the [package list](common/package-list.txt) with `pacman -S [packages]`.
+Install all packages from the [package list](package-list.txt) with `pacman -S [packages]`.
 
 Show system information when logging in.
 
@@ -144,7 +144,7 @@ Later, on post-installation, connect to a wifi network with `iwctl`.
 
 ## Network bonding
 
-- [cf. `/etc/systemd/network/`](common/etc/systemd/network/)
+- [cf. `/etc/systemd/network/`](etc/systemd/network/)
 
 ## Create user's profile
 
@@ -182,8 +182,8 @@ sudo git config --system receive.fsckObjects true
 
 ### WireGuard (client)
 
-- [cf. `/etc/wireguard/wg0.conf` (server)](common/etc/wireguard/wg0-s.conf)
-- [cf. `/etc/wireguard/wg0.conf` (client)](common/etc/wireguard/wg0-c.conf)
+- [cf. `/etc/wireguard/wg0.conf` (server)](etc/wireguard/wg0-s.conf)
+- [cf. `/etc/wireguard/wg0.conf` (client)](etc/wireguard/wg0-c.conf)
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg0-private.key | wg pubkey | sudo tee /etc/wireguard/wg0-public.key
