@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 function _run() {
-  cryptsetup luksOpen /dev/sdc1 zodiac
+  cryptsetup luksOpen /dev/sdb1 zodiac
   mount /dev/mapper/zodiac /zodiac
   exportfs -arv
 }

@@ -73,7 +73,7 @@ mount /dev/sda1 /mnt/boot/efi
 ## Install essential packages
 
 ```sh
-pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode grub {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g exfat-utils bash-completion man-{db,pages} texinfo # efibootmgr (for UEFI)
+pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode grub {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g exfat-utils man-{db,pages} texinfo # efibootmgr (for UEFI)
 ```
 
 ## Configure the system
@@ -152,7 +152,7 @@ Later, on post-installation, connect to a wifi network with `iwctl`.
 passwd root
 
 visudo # #Uncomment to allow members of group wheel to execute any command
-useradd -m -g wheel -c 'user' -s /usr/bin/bash user
+useradd -m -g wheel -c 'user' -s /usr/bin/zsh user
 passwd user
 ```
 

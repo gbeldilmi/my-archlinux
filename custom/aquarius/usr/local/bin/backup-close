@@ -1,9 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 function _run() {
-  umount /zodiac
-  cryptsetup luksClose zodiac
-  exportfs -arv
+  umount /backup
+  cryptsetup luksClose backup
 }
 
 if [ "$EUID" -ne 0 ]

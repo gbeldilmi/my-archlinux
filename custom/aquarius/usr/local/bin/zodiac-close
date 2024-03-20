@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 function _run() {
-  mount.nfs aquarius:/srv/zodiac /zodiac
+  umount /zodiac
+  cryptsetup luksClose zodiac
+  exportfs -arv
 }
 
 if [ "$EUID" -ne 0 ]
@@ -12,5 +14,3 @@ else
   _run
   exit 0
 fi
-
-unset -f _run
