@@ -73,7 +73,7 @@ mount /dev/sda1 /mnt/boot/efi
 ## Install essential packages
 
 ```sh
-pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode grub {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g exfat-utils man-{db,pages} texinfo # efibootmgr (for UEFI)
+pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode grub {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g exfat-utils man-{db,pages} # efibootmgr (for UEFI)
 ```
 
 ## Configure the system
