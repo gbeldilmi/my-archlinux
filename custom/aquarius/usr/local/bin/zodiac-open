@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
-function _run() {
-  cryptsetup luksOpen /dev/sdb1 zodiac
+function _open_backup() {
+  cryptsetup luksOpen /dev/sdc1 backup --key-file $ZODIAC_KEY
+  mount /dev/mapper/backup /backup
+}
+
+function _open_zodiac() {
+  cryptsetup luksOpen /dev/sdb1 zodiac --key-file $ZODIAC_KEY
   mount /dev/mapper/zodiac /zodiac
   exportfs -arv
 }
@@ -11,6 +16,10 @@ then
   echo "Please run as root"
   exit 1
 else
-  _run
+  _open_backup
+  _open_zodiac
   exit 0
 fi
+
+unset -f _open_backup
+unset -f _open_zodiac

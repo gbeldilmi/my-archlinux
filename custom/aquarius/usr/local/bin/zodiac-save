@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-function _run() {
+function _save_zodiac() {
   _date=$(date +%F)
   #sha256deep -r /zodiac/library | tee /backup/zodiac-$_date.sha256
   tar -I pixz -cvf /backup/zodiac-$_date.tar.xz  /zodiac/library
 }
 
-nohup _run &!
+nohup _save_zodiac &!
 
-unset -f _run
+unset -f _save_zodiac

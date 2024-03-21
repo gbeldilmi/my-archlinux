@@ -15,10 +15,24 @@ Partition                      | Mount point   | Size               | Filesystem
 
 ### Encrypted partitions
 
+Create encrypted partitions:
+
 ```sh
 sudo cryptsetup luksFormat /dev/sdb1
 sudo cryptsetup luksFormat /dev/sdc1
+```
 
+Add key to encrypted partitions and key path to environment:
+
+```sh
+sudo vim /etc/environment # ZODIAC_KEY=/path/to/key
+sudo cryptsetup luksAddKey /dev/sdb1 /path/to/key
+sudo cryptsetup luksAddKey /dev/sdc1 /path/to/key
+```
+
+Open and format encrypted partitions:
+
+```sh
 sudo cryptsetup luksOpen /dev/sdb1 zodiac
 sudo cryptsetup luksOpen /dev/sdc1 backup
 
@@ -33,10 +47,16 @@ sudo mount /dev/mapper/backup /backup
 
 ```sh
 mkdir -p /zodiac/library
-ln -sf /zodiac/library ~/library
+sudo ln -sf /zodiac/library ~/library
 
-ln -sf /zodiac/library/projects /srv/git
+sudo ln -sf /zodiac/library/projects /srv/git
 # on client : git clone user@aquarius:/srv/git/<repo>.git
 
-ln -sf /zodiac /srv/zodiac # NFS
+sudo ln -sf /zodiac /srv/zodiac # NFS
+```
+
+## Services
+
+```sh
+sudo systemctl enable zodiac-init.service
 ```

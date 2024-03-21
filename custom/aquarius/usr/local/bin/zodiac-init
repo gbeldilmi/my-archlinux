@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+_mountpoint="/mnt"
+_device="/dev/sdd1"
+
+if [ "$EUID" -ne 0 ]
+then
+  echo "Please run as root"
+  exit 1
+else
+  mount "$_device" "$_mountpoint"
+  if [ $? -eq 0 ]
+  then
+    zodiac-open
+    umount "$_mountpoint"
+  fi
+fi
+
+unset -v _mountpoint
+unset -v _device

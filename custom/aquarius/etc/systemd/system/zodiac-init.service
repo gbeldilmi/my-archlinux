@@ -1,0 +1,9 @@
+[Unit]
+Description=Launch zodiac-init script at startup.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/zsh /usr/local/bin/zodiac-init
+
+[Install]
+WantedBy=multi-user.target
