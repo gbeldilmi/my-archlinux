@@ -142,14 +142,19 @@ systemctl enable iwd
 
 Later, on post-installation, connect to a wifi network with `iwctl`.
 
+- [cf. `/etc/systemd/network/20-wlan0.network`](etc/systemd/network/20-wlan0.network)
+
 ## Network bonding
 
-- [cf. `/etc/systemd/network/`](etc/systemd/network/)
+- [cf. `/etc/systemd/network/30-bond0.netdev`](etc/systemd/network/30-bond0.netdev)
+- [cf. `/etc/systemd/network/30-bond0.network`](etc/systemd/network/30-bond0.network)
+- [cf. `/etc/systemd/network/30-enp6-bond0.network`](etc/systemd/network/30-enp6-bond0.network)
 
 ## Create user's profile
 
 ```sh
 passwd root
+chsh -s /usr/bin/zsh
 
 visudo # #Uncomment to allow members of group wheel to execute any command
 useradd -m -g wheel -c 'user' -s /usr/bin/zsh user
