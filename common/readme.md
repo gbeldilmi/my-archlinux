@@ -187,8 +187,9 @@ sudo git config --system receive.fsckObjects true
 
 ### WireGuard (client)
 
-- [cf. `/etc/wireguard/wg0.conf` (server)](etc/wireguard/wg0-s.conf)
-- [cf. `/etc/wireguard/wg0.conf` (client)](etc/wireguard/wg0-c.conf)
+- [cf. `/etc/wireguard/wg0.conf` (gateway)](etc/wireguard/wg0-gateway.conf)
+- [cf. `/etc/wireguard/wg0.conf` (internal)](etc/wireguard/wg0-internal.conf)
+- [cf. `/etc/wireguard/wg0.conf` (client)](etc/wireguard/wg0-client.conf)
 
 ```sh
 wg genkey | sudo tee /etc/wireguard/wg0-private.key | wg pubkey | sudo tee /etc/wireguard/wg0-public.key
