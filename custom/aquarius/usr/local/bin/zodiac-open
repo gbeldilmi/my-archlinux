@@ -16,9 +16,14 @@ then
   echo "Please run as root"
   exit 1
 else
-  _open_backup
-  _open_zodiac
-  exit 0
+  if [ -f $ZODIAC_KEY ]
+  then
+    _open_backup
+    _open_zodiac
+  else
+    echo "Key file not found"
+    exit 1
+  fi
 fi
 
 unset -f _open_backup
