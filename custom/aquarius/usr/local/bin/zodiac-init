@@ -8,12 +8,14 @@ then
   echo "Please run as root"
   exit 1
 else
+  echo -e '\a' > /dev/console # beep
   mount "$_device" "$_mountpoint"
   if [ $? -eq 0 ]
   then
     zodiac-open
     umount "$_mountpoint"
   fi
+  echo -e '\a' > /dev/console # beep
 fi
 
 unset -v _mountpoint
