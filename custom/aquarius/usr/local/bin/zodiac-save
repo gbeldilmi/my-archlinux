@@ -6,6 +6,6 @@ function _save_zodiac() {
   tar -I pixz -cvf /backup/zodiac-$_date.tar.xz  /zodiac/library
 }
 
-nohup _save_zodiac &!
+_save_zodiac &!
 
 unset -f _save_zodiac
