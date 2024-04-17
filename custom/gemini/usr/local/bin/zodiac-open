@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
 function _open_backup() {
-  cryptsetup luksOpen /dev/sdc1 backup --key-file $ZODIAC_KEY
+  cryptsetup luksOpen /dev/sdb1 backup --key-file $ZODIAC_KEY
   mount /dev/mapper/backup /backup
 }
 
 function _open_zodiac() {
-  cryptsetup luksOpen /dev/sdb1 zodiac --key-file $ZODIAC_KEY
+  cryptsetup luksOpen /dev/sdc1 zodiac --key-file $ZODIAC_KEY
   mount /dev/mapper/zodiac /zodiac
   exportfs -arv
 }

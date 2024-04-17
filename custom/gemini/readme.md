@@ -1,17 +1,17 @@
-# aquarius
+# gemini
 
 ## Partitions
 
 Partition                      | Mount point   | Size               | Filesystem
 ------------------------------ | ------------- | ------------------ | ----------------
-**System**                     |               | **1To**            |
+**System** *(SAS 0)*           |               | **1To**            |
 /dev/sda1                      | /boot/efi     | 512Mo              | EFI System
 /dev/sda2                      | /             | Remaining space    | ext4
-/dev/sda3                      |               | 8Go                | swap
-**Data**                       |               | **2To**            |
-/dev/sdb1 */dev/mapper/zodiac* | /zodiac       | The whole device   | ext4 (Encrypted)
-**Backup**                     |               | **4To**            |
-/dev/sdc1 */dev/mapper/backup* | /backup       | The whole device   | ext4 (Encrypted)
+/dev/sda3                      |               | 16Go               | swap
+**Backup** *(SAS 1)*           |               | **4To**            |
+/dev/sdb1 */dev/mapper/backup* | /backup       | The whole device   | ext4 (Encrypted)
+**Data** *(SAS 3-7)*           |               | **4To** *RAID 5*   |
+/dev/sdc1 */dev/mapper/zodiac* | /zodiac       | The whole device   | ext4 (Encrypted)
 
 ### Encrypted partitions
 
@@ -33,14 +33,14 @@ sudo cryptsetup luksAddKey /dev/sdc1 /path/to/key
 Open and format encrypted partitions:
 
 ```sh
-sudo cryptsetup luksOpen /dev/sdb1 zodiac
-sudo cryptsetup luksOpen /dev/sdc1 backup
+sudo cryptsetup luksOpen /dev/sdb1 backup
+sudo cryptsetup luksOpen /dev/sdc1 zodiac
 
-sudo mkfs.ext4 /dev/mapper/zodiac
 sudo mkfs.ext4 /dev/mapper/backup
+sudo mkfs.ext4 /dev/mapper/zodiac
 
-sudo mount /dev/mapper/zodiac /zodiac
 sudo mount /dev/mapper/backup /backup
+sudo mount /dev/mapper/zodiac /zodiac
 ```
 
 ## Directories and symlinks
@@ -50,7 +50,7 @@ mkdir -p /zodiac/library
 sudo ln -sf /zodiac/library ~/library
 
 sudo ln -sf /zodiac/library/projects /srv/git
-# on client : git clone user@aquarius:/srv/git/<repo>.git
+# on client : git clone user@gemini:/srv/git/<repo>.git
 
 sudo ln -sf /zodiac /srv/zodiac # NFS
 ```
