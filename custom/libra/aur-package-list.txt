@@ -1,3 +1,0 @@
-github-desktop
-spotify
-visual-studio-code-bin

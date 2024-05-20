@@ -1,0 +1,51 @@
+#!/usr/bin/env zsh
+
+_mountpoint="/mnt"
+_key_device="/dev/disk/by-uuid/$KEY_UUID"
+_zodiac_device="/dev/disk/by-uuid/$ZODIAC_UUID"
+_backup_device="/dev/disk/by-uuid/$BACKUP_UUID"
+
+function _beep() {
+  echo -e '\a' > /dev/console
+}
+
+function _open_backup() {
+  cryptsetup luksOpen "$_backup_device" backup --key-file "$_mountpoint/$BACKUP_KEY"
+  mount /dev/mapper/backup /backup
+}
+
+function _open_zodiac() {
+  cryptsetup luksOpen "$_zodiac_device" zodiac --key-file "$_mountpoint/$ZODIAC_KEY"
+  mount /dev/mapper/zodiac /zodiac
+  exportfs -arv
+}
+
+function _run() {
+  mount "$_key_device" "$_mountpoint"
+  if [ $? -eq 0 ]
+  then
+    if [ -f $ZODIAC_KEY ] && [ -f $BACKUP_KEY ]
+    then
+      _open_backup
+      _open_zodiac
+    else
+      echo "Key file not found"
+      _beep
+    fi
+    umount "$_mountpoint"
+  fi
+}
+
+if [ "$EUID" -ne 0 ]
+then
+  echo "Please run as root"
+else
+  _beep
+  _run
+  _beep
+fi
+
+unset -f _beep
+unset -f _open_backup
+unset -f _open_zodiac
+unset -f _run
