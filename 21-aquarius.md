@@ -10,10 +10,10 @@ Partition                           | Mount point | Size             | Filesyste
 /dev/nvme0n1p3                      |             | 16Go             | swap
 **Zodiac**                          |             |                  |
 /dev/nvme1n1p1 */dev/mapper/zodiac* | /zodiac     | The whole device | ext4 (Encrypted)
-**Workspace 1**                     |             |                  |
-/dev/sda1                           | /ws1        | The whole device | ext4
-**Workspace 2**                     |             |                  |
-/dev/sdb1                           | /ws2        | The whole device | ext4
+**Home**                            |             |                  |
+/dev/sda1                           | /home       | The whole device | ext4
+**Local**                           |             |                  |
+/dev/sdb1                           | /local      | The whole device | ext4
 **Backup**                          |             |                  |
 /dev/sdc1 */dev/mapper/backup*      | /backup     | The whole device | ext4 (Encrypted)
 
@@ -23,9 +23,8 @@ Partition                           | Mount point | Size             | Filesyste
 sudo ln -sf /zodiac /srv/zodiac               # NFS (Zodiac)
 sudo ln -sf /zodiac/library/projects /srv/git # Git (Zodiac)
 
-sudo ln -sf /zodiac/library ~/library         # Home -> Zodiac
-sudo ln -sf /ws1 ~/ws1                        # Home -> Workspace 1
-sudo ln -sf /ws2 ~/ws2                        # Home -> Workspace 2
+sudo ln -sf /zodiac/library ~/library         # Home -> Zodiac library
+sudo ln -sf /local/workspace ~/workspace      # Home -> Local workspace
 ```
 
 ## Environment
