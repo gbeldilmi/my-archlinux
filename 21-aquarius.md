@@ -21,7 +21,6 @@ Partition                           | Mount point | Size             | Filesyste
 
 ```sh
 sudo ln -sf /zodiac /srv/zodiac               # NFS (Zodiac)
-sudo ln -sf /zodiac/library/projects /srv/git # Git (Zodiac)
 
 sudo ln -sf /zodiac/library ~/library         # Home -> Zodiac library
 sudo ln -sf /local/workspace ~/workspace      # Home -> Local workspace

@@ -1,4 +1,6 @@
-# NFS server
+# NFS 
+
+## Server
 
 ```sh
 pacman -S nfs-utils
@@ -13,3 +15,14 @@ vim /etc/hosts.deny # ALL: ALL
 systemctl enable nfs-server.service
 exportfs -arv
 ```
+
+## Client
+
+```sh
+pacman -S nfs-utils
+
+mkdir -p /shared
+mount.nfs host:/srv/shared /shared
+```
+
+Eventually, add the `mount.nfs` command to a systemd service file (e.g. `/etc/systemd/system/shared-nfs.service`). And enable it with `systemctl enable shared-nfs.service`.

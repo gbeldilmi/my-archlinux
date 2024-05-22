@@ -1,9 +1,0 @@
-[Unit]
-Description=Launch mnt-zodiac script at startup.
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/zsh /usr/local/bin/mnt-zodiac
-
-[Install]
-WantedBy=multi-user.target
