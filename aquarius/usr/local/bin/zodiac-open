@@ -4,18 +4,20 @@ _mountpoint="/mnt"
 _key_device="/dev/disk/by-uuid/$KEY_UUID"
 _zodiac_device="/dev/disk/by-uuid/$ZODIAC_UUID"
 _backup_device="/dev/disk/by-uuid/$BACKUP_UUID"
+_zodiac_key_file="$_mountpoint/$ZODIAC_KEY"
+_backup_key_file="$_mountpoint/$BACKUP_KEY"
 
 function _beep() {
   echo -e '\a' > /dev/console
 }
 
 function _open_backup() {
-  cryptsetup luksOpen "$_backup_device" backup --key-file "$_mountpoint/$BACKUP_KEY"
+  cryptsetup luksOpen "$_backup_device" backup --key-file "$_backup_key_file"
   mount /dev/mapper/backup /backup
 }
 
 function _open_zodiac() {
-  cryptsetup luksOpen "$_zodiac_device" zodiac --key-file "$_mountpoint/$ZODIAC_KEY"
+  cryptsetup luksOpen "$_zodiac_device" zodiac --key-file "$_zodiac_key_file"
   mount /dev/mapper/zodiac /zodiac
   exportfs -arv
 }
@@ -24,7 +26,7 @@ function _run() {
   mount "$_key_device" "$_mountpoint"
   if [ $? -eq 0 ]
   then
-    if [ -f $ZODIAC_KEY ] && [ -f $BACKUP_KEY ]
+    if [ -f $_zodiac_key_file ] && [ -f $_backup_key_file ]
     then
       _open_backup
       _open_zodiac
