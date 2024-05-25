@@ -1,11 +1,20 @@
 #!/usr/bin/env zsh
 
-function _save() {
-  _date=$(date +%F)
-  #sha256deep -r /zodiac/library | tee /backup/zodiac-$_date.sha256
-  tar -I pixz -cvf /backup/zodiac-$_date.tar.xz  /zodiac/library
+_date=$(date +%F)
+_directory="/zodiac/library"
+_out="/backup/zodiac-$_date"
+
+
+function _archive() {
+  tar -I pixz -cf $_out.tar.xz  $_directory
 }
 
-_save &!
+function _checksum() {
+  find $_directory -type f -exec sha256sum {} \; | sort -k 2 > $_out.sha256.txt
+}
 
-unset -f _save
+_checksum &!
+_archive &!
+
+unset -f _archive
+unset -f _checksum
