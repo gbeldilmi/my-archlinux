@@ -14,6 +14,12 @@ systemctl enable ntpd
 systemctl enable sshd
 ```
 
+## GPU drivers
+
+```sh
+pacman -Syy mesa vulkan-intel
+```
+
 ## Additional packages
 
 Install all additional packages with `pacman -S [packages]` :
@@ -22,6 +28,7 @@ Install all additional packages with `pacman -S [packages]` :
 - `gzip`
 - `htop`
 - `neofetch`
+- `nvtop`
 - `pigz`
 - `pixz`
 - `tar`
