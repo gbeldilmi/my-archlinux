@@ -45,10 +45,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ```sh
 passwd root
-chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh # if you want to use zsh
 
 visudo # #Uncomment to allow members of group wheel to execute any command
-useradd -m -g wheel -c 'user' -s /usr/bin/zsh user
+useradd -m -g wheel -c 'user' -s /usr/bin/bash user
 passwd user
 ```
 
