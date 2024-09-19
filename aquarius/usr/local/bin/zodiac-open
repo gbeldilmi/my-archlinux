@@ -13,12 +13,12 @@ function _beep() {
 
 function _open_backup() {
   cryptsetup luksOpen "$_backup_device" backup --key-file "$_backup_key_file"
-  mount /dev/mapper/backup /backup
+  mount /dev/mapper/backup /backup && echo "Backup mounted"
 }
 
 function _open_zodiac() {
   cryptsetup luksOpen "$_zodiac_device" zodiac --key-file "$_zodiac_key_file"
-  mount /dev/mapper/zodiac /zodiac
+  mount /dev/mapper/zodiac /zodiac && echo "Zodiac mounted"
   exportfs -arv
 }
 
@@ -26,6 +26,7 @@ function _run() {
   mount "$_key_device" "$_mountpoint"
   if [ $? -eq 0 ]
   then
+    echo "Key mounted"
     if [ -f $_zodiac_key_file ] && [ -f $_backup_key_file ]
     then
       _open_backup
@@ -34,7 +35,7 @@ function _run() {
       echo "Key file not found"
       _beep
     fi
-    umount "$_mountpoint"
+    umount "$_mountpoint" && echo "Key unmounted"
   fi
 }
 

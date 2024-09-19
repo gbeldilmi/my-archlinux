@@ -6,15 +6,16 @@ _out="/backup/zodiac-$_date"
 
 
 function _archive() {
-  tar -I pixz -cf $_out.tar.xz  $_directory
+  tar -I pixz -cf $_out.tar.xz  $_directory && echo "Archive saved to $_out.tar.xz"
 }
 
 function _checksum() {
   find $_directory -type f -exec sha256sum {} \; | sort -k 2 > $_out.sha256.txt
+  echo "Checksums saved to $_out.sha256.txt"
 }
 
-_checksum &!
-_archive &!
+_checksum &
+_archive
 
 unset -f _archive
 unset -f _checksum
