@@ -31,11 +31,16 @@ sudo ln -sf /local/workspace ~/workspace      # Home -> Local workspace
 ```sh
 sudo blkid
 
-sudo vim /etc/environment # KEY_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-                          # ZODIAC_KEY=path/to/key
-                          # ZODIAC_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-                          # BACKUP_KEY=path/to/key
-                          # BACKUP_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+sudo vim /etc/environment
+```
+
+```sh
+# /etc/environment
+KEY_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+ZODIAC_KEY=path/to/key
+ZODIAC_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+BACKUP_KEY=path/to/key
+BACKUP_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
 ## Additionnal scripts and services
