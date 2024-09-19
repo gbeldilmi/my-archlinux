@@ -8,12 +8,12 @@ Partition                           | Mount point | Size             | Filesyste
 /dev/nvme0n1p1                      | /boot/efi   | 512Mo            | EFI System
 /dev/nvme0n1p2                      | /           | Remaining space  | ext4
 /dev/nvme0n1p3                      |             | 16Go             | swap
-**Zodiac**                          |             |                  |
-/dev/nvme1n1p1 */dev/mapper/zodiac* | /zodiac     | The whole device | ext4 (Encrypted)
 **Home**                            |             |                  |
 /dev/sda1                           | /home       | The whole device | ext4
-**Local**                           |             |                  |
-/dev/sdb1                           | /local      | The whole device | ext4
+**External Drive**                  |             |                  |
+/dev/sdb1                           | /ext        | The whole device | ext4
+**Zodiac**                          |             |                  |
+/dev/nvme1n1p1 */dev/mapper/zodiac* | /zodiac     | The whole device | ext4 (Encrypted)
 **Backup**                          |             |                  |
 /dev/sdc1 */dev/mapper/backup*      | /backup     | The whole device | ext4 (Encrypted)
 
@@ -23,7 +23,6 @@ Partition                           | Mount point | Size             | Filesyste
 sudo ln -sf /zodiac /srv/zodiac               # NFS (Zodiac)
 
 sudo ln -sf /zodiac/library ~/library         # Home -> Zodiac library
-sudo ln -sf /local/workspace ~/workspace      # Home -> Local workspace
 ```
 
 ## Environment
