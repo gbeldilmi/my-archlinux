@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 _mountpoint="/mnt"
 _key_device="/dev/disk/by-uuid/$KEY_UUID"

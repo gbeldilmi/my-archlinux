@@ -1,8 +1,8 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 _date=$(date +%F)
-_directory="/zodiac/library"
-_out="/backup/zodiac-$_date"
+_directory="/zodiac/$USER"
+_out="/backup/zodiac-$USER-$_date"
 
 
 function _archive() {
