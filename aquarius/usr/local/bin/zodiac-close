@@ -5,12 +5,12 @@ function _beep() {
 }
 
 function _close_backup() {
-  umount /backup && echo "Backup unmounted"
+  umount -l /backup && echo "Backup unmounted"
   cryptsetup luksClose backup && echo "Backup closed"
 }
 
 function _close_zodiac() {
-  umount /zodiac && echo "Zodiac unmounted"
+  umount -l /zodiac && echo "Zodiac unmounted"
   cryptsetup luksClose zodiac && echo "Zodiac closed"
   exportfs -arv
 }
