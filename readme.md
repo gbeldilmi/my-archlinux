@@ -18,3 +18,5 @@
 ## III. Host specific setup
 
 - [21. Aquarius](21-aquarius.md)
+- [22. Gemini](22-gemini.md)
+- [23. Libra](23-libra.md)
