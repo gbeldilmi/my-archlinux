@@ -45,6 +45,7 @@ echo "neofetch" >> /etc/profile
 
 ## Development tools
 
+- `git`
 - `jdk-openjdk`
 - `lua`
 - `nmap`
