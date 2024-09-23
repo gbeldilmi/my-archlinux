@@ -37,3 +37,8 @@ Later, on post-installation, connect to a wifi network with `iwctl`.
 - [cf. `/etc/systemd/network/30-bond0.netdev`](base/etc/systemd/network/30-bond0.netdev)
 - [cf. `/etc/systemd/network/30-bond0.network`](base/etc/systemd/network/30-bond0.network)
 - [cf. `/etc/systemd/network/30-enp6-bond0.network`](base/etc/systemd/network/30-enp6-bond0.network)
+
+
+## `hosts` file
+
+- [cf. `/etc/hosts`](base/etc/hosts)
