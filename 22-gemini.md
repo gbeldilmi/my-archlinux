@@ -12,3 +12,13 @@ Partition                           | Mount point | Size             | Filesyste
 /dev/sdb1                           | /home       | The whole device | ext4
 **External Drive**                  |             |                  |
 /dev/nvme0n1p1                      | /ext        | The whole device | ext4
+
+## Workspace
+
+```sh
+mkdir -p ~/workspace
+```
+
+## Additionnal scripts and services
+
+- [cf. `/usr/local/bin/save-workspace`](gemini/usr/local/bin/save-workspace)
