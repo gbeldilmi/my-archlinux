@@ -17,9 +17,11 @@ Partition                           | Mount point | Size             | Filesyste
 **Backup**                          |             |                  |
 /dev/sdc1 */dev/mapper/backup*      | /backup     | The whole device | ext4 (Encrypted)
 
-## Links
+## Links and directories
 
 ```sh
+sudo mkdir /zext                              # External drive for backups
+
 sudo ln -sf /zodiac /srv/zodiac               # NFS (Zodiac)
 
 sudo ln -sf /zodiac/$USER ~/zodiac            # Home -> Zodiac
@@ -38,6 +40,8 @@ sudo vim /etc/environment
 KEY_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ZODIAC_KEY=path/to/key
 ZODIAC_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+ZEXT_KEY=path/to/key
+ZEXT_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 BACKUP_KEY=path/to/key
 BACKUP_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```

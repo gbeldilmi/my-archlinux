@@ -2,10 +2,12 @@
 
 _mountpoint="/mnt"
 _key_device="/dev/disk/by-uuid/$KEY_UUID"
-_zodiac_device="/dev/disk/by-uuid/$ZODIAC_UUID"
 _backup_device="/dev/disk/by-uuid/$BACKUP_UUID"
-_zodiac_key_file="$_mountpoint/$ZODIAC_KEY"
+_zodiac_device="/dev/disk/by-uuid/$ZODIAC_UUID"
+_zext_device="/dev/disk/by-uuid/$ZEXT_UUID"
 _backup_key_file="$_mountpoint/$BACKUP_KEY"
+_zodiac_key_file="$_mountpoint/$ZODIAC_KEY"
+_zext_key_file="$_mountpoint/$ZEXT_KEY"
 
 function _beep() {
   echo -e '\a' > /dev/console
@@ -22,6 +24,11 @@ function _open_zodiac() {
   exportfs -arv
 }
 
+function _open_zext() {
+  cryptsetup luksOpen "$_zext_device" zext --key-file "$_zext_key_file"
+  mount /dev/mapper/zext /zext && echo "Zodiac external drive mounted"
+}
+
 function _run() {
   mount "$_key_device" "$_mountpoint"
   if [ $? -eq 0 ]
@@ -29,8 +36,9 @@ function _run() {
     echo "Key mounted"
     if [ -f $_zodiac_key_file ] && [ -f $_backup_key_file ]
     then
-      _open_backup
-      _open_zodiac
+      mount | grep -q /backup || _open_backup
+      mount | grep -q /zodiac || _open_zodiac
+      mount | grep -q /zext || _open_zext
     else
       echo "Key file not found"
       _beep
@@ -51,4 +59,5 @@ fi
 unset -f _beep
 unset -f _open_backup
 unset -f _open_zodiac
+unset -f _open_zext
 unset -f _run

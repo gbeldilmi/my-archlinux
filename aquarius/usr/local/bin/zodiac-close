@@ -15,14 +15,21 @@ function _close_zodiac() {
   exportfs -arv
 }
 
+function _close_zext() {
+  umount -l /zext && echo "Zodiac external drive unmounted"
+  cryptsetup luksClose zext && echo "Zodiac external drive closed"
+}
+
 if [ "$EUID" -ne 0 ]
 then
   echo "Please run as root"
 else
-  _close_backup
-  _close_zodiac
+  mount | grep -q /backup && _close_backup
+  mount | grep -q /zodiac && _close_zodiac
+  mount | grep -q /zext && _close_zext
 fi
 
 unset -f _beep
 unset -f _close_backup
 unset -f _close_zodiac
+unset -f _close_zext
