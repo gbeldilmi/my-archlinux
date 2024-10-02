@@ -25,8 +25,14 @@ function _open_zodiac() {
 }
 
 function _open_zext() {
-  cryptsetup luksOpen "$_zext_device" zext --key-file "$_zext_key_file"
-  mount /dev/mapper/zext /zext && echo "Zodiac external drive mounted"
+  ls /dev/disk/by-uuid | grep -q $ZEXT_UUID
+  if [ $? -eq 0 ]
+  then
+    cryptsetup luksOpen "$_zext_device" zext --key-file "$_zext_key_file"
+    mount /dev/mapper/zext /zext && echo "Zodiac external drive mounted"
+  else
+    echo "Zodiac external drive not connected"
+  fi
 }
 
 function _run() {
