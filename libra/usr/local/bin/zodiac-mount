@@ -2,19 +2,11 @@
 
 _host="aquarius"
 _mountpoint="/zodiac" # must be absolute path
-_directory="$_mountpoint/$USER"
-_link="$HOME/zodiac"
 
 function _mount() {
   mkdir -p $_mountpoint
   echo "Connecting to $_host"
   mount.nfs $_host:/srv$_mountpoint $_mountpoint && echo "Mounted on $_mountpoint"
-  if [ -L $_link ]
-  then
-    echo "Link exists"
-  else
-    ln -s $_directory $_link && echo "Link created"
-  fi
 }
 
 if [ "$EUID" -ne 0 ]

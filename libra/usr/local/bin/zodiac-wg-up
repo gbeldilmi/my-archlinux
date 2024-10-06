@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+_wg_interface="wg0"
+
+function _wg_up() {
+  _gateway=$(routel | grep default | awk '{print $2}')
+  wg-quick up $_wg_interface && ip route add default via $_gateway
+}
+
+if [ "$EUID" -ne 0 ]
+then
+  echo "Please run as root"
+else
+  _wg_up
+  zodiac-mount
+fi
+
+unset -f _wg_up
