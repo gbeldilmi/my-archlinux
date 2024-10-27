@@ -9,7 +9,7 @@ function _archive() {
 }
 
 function _checksum() {
-  find $_directory -type f -exec sha256sum {} \; | sort -k 2 > $_out.sha256.txt
+  find $_directory -type f -exec sha256sum {} \; | sort > $_out.sha256.txt
   echo "Checksums saved to $_out.sha256.txt"
 }
 
