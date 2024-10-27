@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-_host="aquarius"
+_host="gemini"
 _mountpoint="/zodiac" # must be absolute path
 
 function _mount() {

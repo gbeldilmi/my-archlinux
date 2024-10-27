@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+_key_device="/dev/disk/by-uuid/$KEY_UUID"
+_zodiac_device="/dev/disk/by-uuid/$ZODIAC_UUID"
+
+function _get_key_via_ssh() {
+  ping -c 8 $KEY_HOST > /dev/null
+  if [ $? -eq 0 ]
+  then
+    scp "$KEY_HOST:/zodiac.txt.enc" /tmp/zodiac/
+    openssl aes-256-cbc -d -in /tmp/zodiac/zodiac.txt.enc -out /tmp/zodiac/zodiac.txt -pass pass:$KEY_UUID -pbkdf2
+  else
+    echo "Host unreachable"
+    return 1
+  fi
+}
+
+function _get_key_via_usb() {
+  _mountpoint="/mnt"
+  mount "$_key_device" "$_mountpoint"
+  if [ $? -eq 0 ]
+  then
+    echo "Key mounted"
+    if [ -f "$_mountpoint/zodiac.txt" ]
+    then
+      cp "$_mountpoint/zodiac.txt" /tmp/zodiac/
+    else
+      echo "Key file not found"
+    fi
+    umount "$_mountpoint" && echo "Key unmounted"
+  fi
+}
+
+function _open_zodiac() {
+  cryptsetup luksOpen "$_zodiac_device" zodiac --key-file /tmp/zodiac/zodiac.key
+  mount /dev/mapper/zodiac /zodiac && echo "Zodiac mounted"
+  exportfs -arv
+}
+
+function _run() {
+  mkdir -p /tmp/zodiac
+  _get_key_via_ssh || _get_key_via_usb
+  if [ -f /tmp/zodiac/zodiac.txt ]
+  then
+    openssl aes-256-cbc -d -in /tmp/zodiac/zodiac.key.enc -out /tmp/zodiac/zodiac.key -pass file:/tmp/zodiac/zodiac.txt -pbkdf2
+    _open_zodiac
+  fi
+  rm -rv /tmp/zodiac
+}
+
+if [ "$EUID" -ne 0 ]
+then
+  echo "Please run as root"
+else
+  mount | grep -q /zodiac || _run
+fi
+
+unset -f _get_key_via_ssh
+unset -f _get_key_via_usb
+unset -f _open_zodiac
+unset -f _run

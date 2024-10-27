@@ -17,7 +17,7 @@ systemctl enable sshd
 ## GPU drivers
 
 ```sh
-pacman -Syy mesa vulkan-intel
+pacman -Syy mesa vulkan-intel intel-gpu-tools
 ```
 
 ## Additional packages
@@ -28,7 +28,6 @@ Install all additional packages with `pacman -S [packages]` :
 - `gzip`
 - `htop`
 - `neofetch`
-- `nvtop`
 - `pigz`
 - `pixz`
 - `tar`

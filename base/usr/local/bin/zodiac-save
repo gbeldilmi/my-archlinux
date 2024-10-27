@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 _date=$(date +%F)
-_directory="/zodiac/$USER"
-_out="/backup/zodiac-$USER-$_date"
-
+_directory="/zodiac/workspace/$USER"
+_out="/zodiac/backup/zodiac-$USER-$_date"
 
 function _archive() {
   tar -I pixz -cf $_out.tar.xz  $_directory && echo "Archive saved to $_out.tar.xz"

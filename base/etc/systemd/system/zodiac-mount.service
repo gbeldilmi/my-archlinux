@@ -1,0 +1,9 @@
+[Unit]
+Description=Run zodiac-mount script at startup.
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/zodiac-mount
+
+[Install]
+WantedBy=multi-user.target

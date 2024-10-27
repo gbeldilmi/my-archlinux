@@ -1,0 +1,14 @@
+[Unit]
+Description=Run zodiac-close script at shutdown
+Requires=network.target
+DefaultDependencies=no
+Before=shutdown.target reboot.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/usr/local/bin/zodiac-close
+
+[Install]
+WantedBy=multi-user.target

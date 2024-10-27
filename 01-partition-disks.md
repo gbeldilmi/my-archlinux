@@ -63,7 +63,7 @@ mount /dev/sda1 /mnt/boot/efi
 Create encrypted partitions:
 
 ```sh
-sudo cryptsetup luksFormat /dev/sdc1
+sudo cryptsetup luksFormat /dev/sdc1 # --key-file /path/to/key
 ```
 
 Add key to encrypted partitions and key path to environment:
@@ -75,9 +75,11 @@ sudo cryptsetup luksAddKey /dev/sdc1 /path/to/key
 Open and format encrypted partitions:
 
 ```sh
-sudo cryptsetup luksOpen /dev/sdc1 encrypted
+sudo cryptsetup luksOpen /dev/sdc1 encrypted # --key-file /path/to/key
 
 sudo mkfs.ext4 /dev/mapper/encrypted
 
 sudo mount /dev/mapper/encrypted /mountpoint
 ```
+
+To generate a key file, I use this [utility](https://github.com/gbeldilmi/luks-keygen).
