@@ -28,6 +28,7 @@ Install all additional packages with `pacman -S [packages]` :
 - `gzip`
 - `htop`
 - `neofetch`
+- `parallel`
 - `pigz`
 - `pixz`
 - `tar`
