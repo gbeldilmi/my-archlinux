@@ -18,11 +18,6 @@ sudo systemctl enable zodiac-mount.service
 sudo systemctl enable zodiac-umount.service
 ```
 
-For laptops only:
-
-- [cf. `/usr/local/bin/zodiac-wg-up`](base/usr/local/bin/zodiac-wg-up)
-- [cf. `/usr/local/bin/zodiac-wg-down`](base/usr/local/bin/zodiac-wg-down)
-
 ## Server
 
 ```sh
