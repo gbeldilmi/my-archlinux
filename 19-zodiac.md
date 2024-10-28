@@ -37,6 +37,7 @@ sudo vim /etc/environment
 
 ```sh
 # /etc/environment
+MASTER=__USERNAME__
 KEY_HOST=__HOSTNAME__
 KEY_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ZODIAC_UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx

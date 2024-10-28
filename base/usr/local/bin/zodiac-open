@@ -12,7 +12,7 @@ function _get_key_via_ssh() {
   ping -c 8 $KEY_HOST > /dev/null
   if [ $? -eq 0 ]
   then
-    scp "$KEY_HOST:/$_key" $_tmp_dir/
+    scp "$MASTER@$KEY_HOST:/$_key" $_tmp_dir/
   else
     echo "Host unreachable"
     return 1
@@ -20,10 +20,10 @@ function _get_key_via_ssh() {
 }
 
 function _get_key_via_usb() {
-  mount "$_key_device" "$_mountpoint"
-  if [ $? -eq 0 ]
+  mkdir -p "$_mountpoint"
+  if [ -b "$_key_device" ]
   then
-    echo "Key mounted"
+    mount "$_key_device" "$_mountpoint" && echo "Key mounted"
     if [ -f "$_mountpoint/$_key" ]
     then
       cp "$_mountpoint/$_key" $_tmp_dir/
