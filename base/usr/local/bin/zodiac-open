@@ -10,6 +10,7 @@ _key="zodiac.key"
 
 function _get_key_via_ssh() {
   ping -c 8 $KEY_HOST > /dev/null
+  echo "Getting key via SSH"
   if [ $? -eq 0 ]
   then
     scp "$MASTER@$KEY_HOST:/$_key" $_tmp_dir/
@@ -21,6 +22,7 @@ function _get_key_via_ssh() {
 
 function _get_key_via_usb() {
   mkdir -p "$_mountpoint"
+  echo "Getting key via USB device"
   if [ -b "$_key_device" ]
   then
     mount "$_key_device" "$_mountpoint" && echo "Key mounted"
@@ -35,6 +37,7 @@ function _get_key_via_usb() {
 }
 
 function _open_zodiac() {
+  echo "Opening Zodiac"
   cryptsetup luksOpen "$_zodiac_device" zodiac --key-file "$_tmp_dir/$_key.d"
   mount /dev/mapper/zodiac /zodiac && echo "Zodiac mounted"
   exportfs -arv
@@ -45,9 +48,11 @@ function _run() {
   _get_key_via_ssh || _get_key_via_usb
   if [ -f "$_tmp_dir/$_key" ]
   then
+    echo "Decrypting key"
     openssl aes-256-cbc -d -in "$_tmp_dir/$_key" -out "$_tmp_dir/$_key.d" -pass "file:/$_pass" -pbkdf2
     _open_zodiac
   fi
+  echo "Cleaning up"
   rm -rv $_tmp_dir
 }
 
