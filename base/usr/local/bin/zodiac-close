@@ -2,8 +2,8 @@
 
 function _close_zodiac() {
   umount -l /zodiac && echo "Zodiac unmounted"
-  cryptsetup luksClose zodiac && echo "Zodiac closed"
   exportfs -arv
+  cryptsetup luksClose zodiac && echo "Zodiac closed"
 }
 
 if [ "$EUID" -ne 0 ]
