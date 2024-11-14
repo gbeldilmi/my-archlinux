@@ -14,52 +14,42 @@ systemctl enable ntpd
 systemctl enable sshd
 ```
 
-## GPU drivers
-
-```sh
-pacman -Syy mesa vulkan-intel intel-gpu-tools
-```
-
 ## Additional packages
 
-Install all additional packages with `pacman -S [packages]` :
-
-- `btop`
-- `gzip`
-- `htop`
-- `neofetch`
-- `parallel`
-- `pigz`
-- `pixz`
-- `tar`
-- `tree`
-- `wget`
-
-## Additional features
-
-Show system information when logging in.
+Install all additional packages with ` <packages>` :
 
 ```sh
-echo "neofetch" >> /etc/profile
+pacman -S gzip {b,h}top neofetch parallel pi{g,x}z tar tree wget
+
+echo "neofetch" >> /etc/profile # Show system information when logging in.
 ```
 
-## Development tools
+- GPU drivers :
 
-- `git`
-- `jdk-openjdk`
-- `lua`
-- `nmap`
-- `python`
-- `ruby`
-- `rust`
+```
+mesa vulkan-intel intel-gpu-tools
+```
 
-## Desktop applications
+- Development tools :
 
-- `desmume`
-- `discord`
-- `firefox-developer-edition`
-- `github-desktop` (AUR)
-- `libreoffice-fresh`
-- `rawtherapee`
-- `spotify` (AUR)
-- `visual-studio-code-bin` (AUR)
+```
+git jdk-openjdk lua nmap python ruby rust
+```
+
+- Desktop applications :
+
+```
+desmume discord firefox libreoffice-fresh rawtherapee
+```
+
+### AUR packages
+
+- [`github-desktop`](https://aur.archlinux.org/github-desktop.git)
+- [`spotify`](https://aur.archlinux.org/spotify.git)
+- [`visual-studio-code-bin`](https://aur.archlinux.org/visual-studio-code-bin.git)
+
+```sh
+git clone <url>
+cd <package>
+makepkg -sri
+```

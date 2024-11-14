@@ -3,7 +3,7 @@
 ## Install essential packages
 
 ```sh
-pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode zsh {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g exfatprogs man-{db,pages} bash-completion
+pacstrap -K /mnt base{,-devel} linux{,-firmware} intel-ucode {,un,p7}zip vim {dosfs,m}tools lsb-release ntfs-3g {exfat,xfs}progs man-{db,pages} bash-completion zsh
 ```
 
 ## Configure the system

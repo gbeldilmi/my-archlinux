@@ -14,7 +14,6 @@
 - [12. NFS server](12-nfs.md)
 - [13. Git](13-git.md)
 - [14. WireGuard](14-wireguard.md)
-- [19. Zodiac](19-zodiac.md)
 
 ## III. Host specific setup
 

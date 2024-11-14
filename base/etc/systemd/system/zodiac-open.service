@@ -1,9 +1,0 @@
-[Unit]
-Description=Run zodiac-open script at startup.
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/zodiac-open
-
-[Install]
-WantedBy=multi-user.target
