@@ -3,7 +3,7 @@
 ## Partitions
 
 Partition                           | Mount point     | Size             | Filesystem
------------------------------------ | ----------- | ---------------- | ----------------
+----------------------------------- | --------------- | ---------------- | ----------------
 **System**                          |                 |                  |
 /dev/nvme0n1p1                      | /boot/efi       | 512Mo            | EFI System
 /dev/nvme0n1p2                      | /               | Remaining space  | xfs
