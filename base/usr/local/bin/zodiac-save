@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
 
-_directory="$1"
+_directory="/zodiac/home/$USER"
 _date=$(date +%F)
-_out="$_directory-$_date"
+_out="/zodiac/bkp/$USER-$_date"
 
 function _archive() {
-  tar -I pixz -cf $_out.tar.xz  $_directory && echo "Archive saved to $_out.tar.xz"
+  cd $_directory 
+  tar -I pixz -cf $_out.tar.xz . && echo "Archive saved to $_out.tar.xz"
 }
 
 function _checksum() {
-  find $_directory -type f | parallel sha256sum | sort > $_out.sha256.txt && echo "Checksums saved to $_out.sha256.txt"
+  cd $_directory
+  find . -type f | parallel sha256sum | sort > $_out.sha256.txt && echo "Checksums saved to $_out.sha256.txt"
+}
+
+function _test() {
+  echo "Testing integrity"
+  $_tmpdir="/zodiac/tmp/backup-test-$USER-$_date"
+  mkdir -p $_tmpdir && cd $_tmpdir
+  tar -I pixz -xf $_out.tar.xz && echo "Archive integrity OK"
+  find . -type f | parallel sha256sum | sort > test.sha256.txt
+  diff $_out.sha256.txt test.sha256.txt && echo "Checksums OK"
+  rm -rf $_tmpdir
 }
 
 _checksum
 _archive
+_test
 
 unset -f _archive
 unset -f _checksum
+unset -f _test

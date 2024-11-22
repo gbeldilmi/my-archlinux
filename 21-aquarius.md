@@ -17,6 +17,12 @@ Partition                           | Mount point     | Size             | Files
 ## Symlinks and directories
 
 ```sh
-sudo mkdir -p /zodiac/{mnt/z{7,10,11,12},home,old}
-sudo ln -sf /zodiac/home/$USER ~/zodiac # Home -> Zodiac
+sudo mkdir -p /zodiac/mnt/z{7,10,11,12}
+sudo ln -sf /zodiac/mnt/z10 /zodiac/home # Z10 -> Zodiac Home
+sudo ln -sf /zodiac/mnt/z12 /zodiac/bkp # Z12 -> Zodiac Backup
+sudo ln -sf /zodiac/home/$USER ~/zodiac # Home -> Zodiac Home
 ```
+
+## Additional scripts
+
+- [/usr/local/bin/zodiac-save](base/usr/local/bin/zodiac-save)
