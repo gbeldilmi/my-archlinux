@@ -39,7 +39,7 @@ git jdk-openjdk lua nmap python ruby rust
 - Desktop applications :
 
 ```
-desmume discord firefox libreoffice-fresh rawtherapee zed
+desmume discord firefox libreoffice-fresh rawtherapee
 ```
 
 ### AUR packages
