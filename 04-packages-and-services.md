@@ -53,3 +53,7 @@ git clone <url>
 cd <package>
 makepkg -sri
 ```
+
+## Additional scripts
+
+- [`/usr/local/bin/mkbackup`](base/usr/local/bin/mkbackup)

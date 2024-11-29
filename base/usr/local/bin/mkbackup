@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+_directory="$1"
+_wd=$(pwd)
+_date=$(date +%F-%H-%M-%S)
+_out="$_wd/$(basename $_directory)-$_date"
+
+function _backup() {
+  cd $_directory && \
+  find . -type f | parallel sha256sum | sort > checksum.sha256.txt && echo "Checksums saved" && \
+  tar -I pigz -cf $_out.tar.gz . && echo "Backup saved to $_out.tar.gz" || echo "Error: Backup failed"
+  cd $_wd
+}
+
+if [ -z "$_directory" ]; then
+  echo "Usage: mkbackup <directory>"
+  exit 1
+fi
+
+if [ ! -d "$_directory" ]; then
+  echo "Error: $_directory is not a directory"
+  exit 1
+fi
+
+_backup
+
+unset -f _backup
