@@ -25,4 +25,4 @@ sudo ln -sf /zodiac/home/$USER ~/zodiac # Home -> Zodiac Home
 
 ## Additional scripts
 
-- [/usr/local/bin/zodiac-save](base/usr/local/bin/zodiac-save)
+- [/usr/local/bin/zodiac-mkbkp](base/usr/local/bin/zodiac-mkbkp)
