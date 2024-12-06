@@ -14,15 +14,15 @@ function _archive() {
 
 function _test() {
   echo "Testing integrity"
-  _tmpdir="/zodiac/tmp/backup-$USER-$_date/test"
-  mkdir $_tmpdir && cd $_tmpdir
+  _tmpdir="/zodiac/tmp/backup-$USER-$_date"
+  mkdir -p $_tmpdir/test && cd $_tmpdir/test
   if [ $? -eq 0 ]
   then
-    tar -I pixz -xf $_out.tar.xz && echo "Archive integrity OK" || echo "Archive integrity failed"
+    tar -I xz -xf $_out.tar.xz && echo "Archive integrity OK" || echo "Archive integrity failed"
     find . -type f | parallel sha256sum | sort > ../test.sha256.txt && \
     diff $_out.sha256.txt ../test.sha256.txt && echo "Checksums OK" || echo "Checksums differ"
   fi
-  cd $_wd # && rm -r $_tmpdir
+  cd $_wd && rm -r $_tmpdir
 }
 
 _archive
